@@ -23,25 +23,67 @@ h3 {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     margin-bottom: 20px;
+    display: flex; /* Use flexbox for better alignment */
+    flex-wrap: wrap; /* Allow items to wrap */
+    align-items: center; /* Vertically align items */
+}
+
+/* Styling for direct children of filters-container for flex layout */
+#filters-container > label,
+#filters-container > select,
+#filters-container > span#search-icon,
+#filters-container > input#search-input { /* This is the hidden input */
+    margin-top: 8px;
+    margin-bottom: 8px; /* Added for spacing when wrapped */
+    margin-right: 10px; /* Spacing between filter elements */
 }
 
 #filters-container label {
-    display: block;
-    margin-top: 12px;
+    /* display: block; Removed, flex handles layout */
     font-weight: 500;
     color: #555;
+    margin-right: 5px; /* Space between label and its select if they are on same line due to flex */
 }
 
-#filters-container select,
-#filters-container input[type="text"] {
-    width: 100%;
+#filters-container select {
     padding: 10px;
-    margin-top: 6px;
     border-radius: 6px;
     border: 1px solid #ddd;
     background-color: #fdfdfd;
+    flex-grow: 1; /* Allow selects to grow */
+    min-width: 150px; /* Prevent from becoming too small */
 }
-#filters-container input[type="text"]::placeholder {
+
+/* Search Icon and Input specific styles */
+#search-icon {
+    /* font-size: 24px; from inline style, can be kept or moved here */
+    /* cursor: pointer; from inline style */
+    padding: 8px; /* Better tap target */
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in-out;
+    display: inline-block; /* Needed for padding, etc. */
+}
+
+#search-icon:hover {
+    background-color: #e9e9ed;
+}
+
+#search-input { /* This is the input field itself */
+    display: none; /* Initially hidden, class 'active' will show it */
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    /* margin-left: 0; Now handled by general selector for direct children */
+    flex-grow: 2; /* Take more space than selects when active */
+    min-width: 200px; /* Minimum width when it appears */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#search-input.active {
+    display: inline-block; /* Or 'flex-item' if needed, but inline-block works with flex align-items */
+}
+
+#filters-container input[type="text"]::placeholder { /* Styling for placeholder text */
     color: #999;
 }
 
@@ -49,22 +91,22 @@ h3 {
 #map {
     height: 500px; /* Default height for larger screens */
     width: 100%;
-    margin-top: 0; /* Adjusted as filters-container has margin-bottom */
+    margin-top: 0;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 #restaurant-details-container {
-    background-color: #ffffff; /* Changed from #f9f9f9 for consistency with filters */
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     margin-top: 20px;
-    padding: 20px; /* Increased padding */
-    border: 1px solid #e0e0e0; /* Softer border */
+    padding: 20px;
+    border: 1px solid #e0e0e0;
 }
 
 #restaurant-details-container h3 {
-    margin-top: 0; /* Remove potential top margin from h3 */
+    margin-top: 0;
     margin-bottom: 10px;
 }
 #restaurant-details-container p {
@@ -72,18 +114,17 @@ h3 {
     color: #444;
 }
 
-
 #get-directions-button {
     background-color: #007aff;
     color: white;
-    padding: 12px 18px; /* Slightly larger padding */
+    padding: 12px 18px;
     border: none;
-    border-radius: 6px; /* Consistent border-radius */
+    border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
-    display: inline-block; /* Allows margin-top to work as expected */
-    margin-top: 15px; /* Adjusted margin */
+    display: inline-block;
+    margin-top: 15px;
     transition: background-color 0.2s ease-in-out;
 }
 
@@ -100,51 +141,68 @@ h3 {
     border: 1px solid #b8daff;
 }
 
-
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
     body {
-        padding: 5px; /* Reduce body padding on smaller screens */
+        padding: 5px;
     }
 
     #filters-container {
         padding: 10px;
+        flex-direction: column; /* Stack filter items vertically */
+        align-items: stretch; /* Make items take full width */
     }
 
-    #filters-container label {
-        margin-top: 10px;
+    #filters-container > label,
+    #filters-container > select,
+    #filters-container > span#search-icon,
+    #filters-container > input#search-input,
+    #search-input.active { /* Ensure active search input also gets these mobile styles */
+        width: 100%; /* Make filter elements full width on mobile */
+        margin-right: 0; /* No right margin when full width */
+        margin-left: 0; /* Reset margin for search input too */
+        padding: 12px;
+        font-size: 16px;
     }
-    #filters-container select,
-    #filters-container input[type="text"] {
-        padding: 12px; /* Increase padding for easier tapping */
-        font-size: 16px; /* Ensure readable font size on mobile inputs */
+
+    #filters-container > span#search-icon {
+        text-align: center; /* Center the icon if it's full width */
+        margin-bottom: 8px; /* Space below icon before input appears or next filter */
     }
+
+    #search-input.active {
+         margin-top: 0; /* Remove top margin if icon is above it */
+    }
+
 
     #map {
-        height: 400px; /* Adjust map height for mobile */
+        height: 400px;
     }
 
     #restaurant-details-container {
-        margin-left: 0px; /* Remove side margins if body padding is sufficient */
+        margin-left: 0px;
         margin-right: 0px;
         padding: 15px;
     }
 
     #get-directions-button {
-        width: 100%; /* Make button full width for easier tapping */
+        width: 100%;
         padding: 15px;
     }
 }
 
 @media (max-width: 480px) {
     body {
-        font-size: 15px; /* Slightly smaller base font for very small screens */
+        font-size: 15px;
     }
      #map {
-        height: 350px; /* Further adjust map height */
+        height: 350px;
     }
-    #filters-container label {
+    #filters-container label { /* This was too general, specific labels are better */
         font-size: 14px;
+    }
+    #filters-container > label { /* Target labels directly in filters container */
+         font-size: 14px;
     }
     #restaurant-details-container h3 {
         font-size: 20px;
