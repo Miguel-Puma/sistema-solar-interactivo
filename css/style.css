@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #f0f0f7;
+    color: #333;
+    line-height: 1.6;
+    margin: 0; /* Ensure no default body margin */
+    padding: 10px; /* Add some overall padding */
+}
+
+h3 {
+    color: #111;
+}
+
+#filters-container {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+#filters-container label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 500;
+    color: #555;
+}
+
+#filters-container select,
+#filters-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #fdfdfd;
+}
+#filters-container input[type="text"]::placeholder {
+    color: #999;
+}
+
+
+#map {
+    height: 500px; /* Default height for larger screens */
+    width: 100%;
+    margin-top: 0; /* Adjusted as filters-container has margin-bottom */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#restaurant-details-container {
+    background-color: #ffffff; /* Changed from #f9f9f9 for consistency with filters */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-top: 20px;
+    padding: 20px; /* Increased padding */
+    border: 1px solid #e0e0e0; /* Softer border */
+}
+
+#restaurant-details-container h3 {
+    margin-top: 0; /* Remove potential top margin from h3 */
+    margin-bottom: 10px;
+}
+#restaurant-details-container p {
+    margin-bottom: 8px;
+    color: #444;
+}
+
+
+#get-directions-button {
+    background-color: #007aff;
+    color: white;
+    padding: 12px 18px; /* Slightly larger padding */
+    border: none;
+    border-radius: 6px; /* Consistent border-radius */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block; /* Allows margin-top to work as expected */
+    margin-top: 15px; /* Adjusted margin */
+    transition: background-color 0.2s ease-in-out;
+}
+
+#get-directions-button:hover {
+    background-color: #005ecb;
+}
+
+#location-status {
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #e7f3ff;
+    color: #004085;
+    border-radius: 6px;
+    border: 1px solid #b8daff;
+}
+
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    body {
+        padding: 5px; /* Reduce body padding on smaller screens */
+    }
+
+    #filters-container {
+        padding: 10px;
+    }
+
+    #filters-container label {
+        margin-top: 10px;
+    }
+    #filters-container select,
+    #filters-container input[type="text"] {
+        padding: 12px; /* Increase padding for easier tapping */
+        font-size: 16px; /* Ensure readable font size on mobile inputs */
+    }
+
+    #map {
+        height: 400px; /* Adjust map height for mobile */
+    }
+
+    #restaurant-details-container {
+        margin-left: 0px; /* Remove side margins if body padding is sufficient */
+        margin-right: 0px;
+        padding: 15px;
+    }
+
+    #get-directions-button {
+        width: 100%; /* Make button full width for easier tapping */
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 15px; /* Slightly smaller base font for very small screens */
+    }
+     #map {
+        height: 350px; /* Further adjust map height */
+    }
+    #filters-container label {
+        font-size: 14px;
+    }
+    #restaurant-details-container h3 {
+        font-size: 20px;
+    }
+    #restaurant-details-container p {
+        font-size: 14px;
+    }
+}

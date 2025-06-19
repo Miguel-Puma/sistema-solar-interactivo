@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcelona Restaurant Finder</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
+</head>
+<body>
+    <div id="location-status"></div>
+
+    <div id="filters-container">
+        <label for="food-type-select">Filter by Food Type:</label>
+        <select id="food-type-select" name="food-type">
+            <option value="">All Types</option>
+            <option value="italian">Italian</option>
+            <option value="spanish">Spanish</option>
+            <option value="japanese">Japanese</option>
+            <option value="mexican">Mexican</option>
+            <option value="indian">Indian</option>
+        </select>
+
+        <label for="zone-select">Filter by Zone:</label>
+        <select id="zone-select" name="zone">
+            <option value="">All Zones</option>
+            <option value="gothic_quarter">Gothic Quarter</option>
+            <option value="eixample">Eixample</option>
+            <option value="gracia">Gràcia</option>
+            <option value="barceloneta">Barceloneta</option>
+        </select>
+
+        <label for="search-input">Search:</label>
+        <input type="text" id="search-input" placeholder="Restaurant name, food type, area...">
+    </div>
+
+    <div id="map"></div>
+    <div id="restaurant-details-container" style="display: none; margin-top: 20px; padding: 15px; border: 1px solid #ccc;">
+        <h3 id="detail-name"></h3>
+        <p id="detail-rating"></p>
+        <p id="detail-address"></p>
+        <button id="get-directions-button" style="margin-top: 10px;">Get Directions</button>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
